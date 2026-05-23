@@ -48,7 +48,7 @@ El proyecto está construido sobre una arquitectura de tres capas con separació
 
 ---
 
-## 🗄️ Base de datos
+## Base de datos
 
 - **14 tablas** — equipo, jugador, entrenador, split, fase_split, historial_equipo, jugador_equipo_historial, entrenador_equipo_historial, partido, mapa, estadistica_jugador, clasificacion_anual, auditoria_lec, usuarios_admin
 - **45 procedimientos almacenados** — toda la lógica de negocio encapsulada en SPs, sin SQL directo en el código PHP

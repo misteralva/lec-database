@@ -1,0 +1,7 @@
+assets/video/
+assets/img/jugadores/
+assets/img/entrenadores/
+assets/img/equipos/
+.DS_Store
+Thumbs.db
+*.log

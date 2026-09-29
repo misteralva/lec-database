@@ -1,89 +1,91 @@
 # LEC Database — League of Legends EMEA Championship
 
-Base de datos y aplicación web completa para gestionar la **League of Legends EMEA Championship (LEC)**, desarrollada como proyecto de base de datos con PHP y MySQL.
+Complete database and web application to manage the **League of Legends EMEA Championship (LEC)**, developed as a database project with PHP and MySQL.
 
 ---
 
-## Descripción
+## Description
 
-Aplicación web full-stack que permite consultar y administrar toda la información de la LEC: equipos, jugadores, partidos, estadísticas y clasificaciones desde la temporada 2024 hasta la actualidad.
+Full-stack web application to browse and manage all the information of the LEC: teams, players, matches, statistics and standings from the 2024 season to the present.
 
-El proyecto está construido sobre una arquitectura de tres capas con separación estricta entre la lógica de datos (procedimientos almacenados MySQL), la capa de acceso (PHP/PDO) y la presentación (HTML/CSS).
-
----
-
-## Funcionalidades
-
-### Web pública
-- **Inicio** — próximos partidos, últimos resultados y equipos de la temporada actual
-- **Clasificación** — tabla de clasificación por año calculada en tiempo real desde resultados reales
-- **Equipos** — plantillas completas con fotos, roles, cuerpo técnico y filtros por split
-- **Jugadores** — buscador con filtro por rol y nacionalidad
-- **Partidos** — detalle de cada partido con mapas y estadísticas individuales
-- **Estadísticas** — top KDA, top CS/min, win rate por equipo y jugador, stats por rol, comparador radar
-- **Playoffs** — bracket visual de doble eliminación
-
-### Panel de administración
-- Sistema de autenticación con tres roles: **superadmin**, **editor** y **auditor**
-- **Nuevo partido** — registrar enfrentamientos con fase y equipos
-- **Editar resultado** — guardar marcador, duración de mapas y estadísticas de los 10 jugadores
-- **Gestionar jugadores** — fichar, cambiar de titular a suplente, cambiar rol, dar de baja
-- **Gestionar equipos** — crear y editar equipos, registrarlos en splits
-- **Gestionar splits** — crear nuevas temporadas y cerrar splits con validación de partidos pendientes
-- **Gestionar usuarios** — crear, activar/desactivar, cambiar rol y eliminar usuarios del panel
-- **Auditoría** — registro automático de todos los cambios en la base de datos con filtros y paginación
+The project is built on a three-layer architecture with a strict separation between the data logic (MySQL stored procedures), the access layer (PHP/PDO) and the presentation (HTML/CSS).
 
 ---
 
-## Tecnologías
+## Features
 
-| Capa | Tecnología |
-|------|-----------|
-| Servidor | PHP 8.x |
-| Base de datos | MySQL 8.0 / MariaDB |
-| Frontend | HTML5 + CSS3 (sin frameworks) |
-| Gráficas | Chart.js |
-| Entorno local | XAMPP |
-| Seguridad credenciales | Archivo `.env` |
+### Public website
+- **Home** — upcoming matches, latest results and teams of the current season
+- **Standings** — yearly standings table calculated in real time from actual results
+- **Teams** — full rosters with photos, roles, coaching staff and filters by split
+- **Players** — search with filters by role and nationality
+- **Matches** — details of each match with maps and individual statistics
+- **Statistics** — top KDA, top CS/min, win rate by team and player, stats by role, radar comparison tool
+- **Playoffs** — visual double-elimination bracket
 
----
-
-## Base de datos
-
-- **14 tablas** — equipo, jugador, entrenador, split, fase_split, historial_equipo, jugador_equipo_historial, entrenador_equipo_historial, partido, mapa, estadistica_jugador, clasificacion_anual, auditoria_lec, usuarios_admin
-- **45 procedimientos almacenados** — toda la lógica de negocio encapsulada en SPs, sin SQL directo en el código PHP
-- **7 funciones** — cálculos auxiliares reutilizables
-- **12 triggers** — auditoría automática, validaciones y protección de datos históricos
-- **4 usuarios MySQL** con permisos diferenciados (admin, backend, readonly, auditor)
-
-### Datos incluidos
-- Temporadas completas 2024–2026 (Spring, Summer, LEC Versus)
-- 10 equipos con plantillas reales del Spring 2026
-- 83+ jugadores y 10 entrenadores
-- Partidos y estadísticas reales obtenidos de gol.gg
+### Admin panel
+- Authentication system with three roles: **superadmin**, **editor** and **auditor**
+- **New match** — register matchups with phase and teams
+- **Edit result** — save the score, map durations and the statistics of all 10 players
+- **Manage players** — sign players, move them between starter and substitute, change role, release
+- **Manage teams** — create and edit teams, register them in splits
+- **Manage splits** — create new seasons and close splits with validation of pending matches
+- **Manage users** — create, activate/deactivate, change role and delete panel users
+- **Audit** — automatic log of every change in the database, with filters and pagination
 
 ---
 
-## Instalación
+## Technologies
 
-### Requisitos
+| Layer | Technology |
+|-------|-----------|
+| Server | PHP 8.x |
+| Database | MySQL 8.0 / MariaDB |
+| Frontend | HTML5 + CSS3 (no frameworks) |
+| Charts | Chart.js |
+| Local environment | XAMPP |
+| Credential security | `.env` file |
+
+---
+
+## Database
+
+- **14 tables** — equipo, jugador, entrenador, split, fase_split, historial_equipo, jugador_equipo_historial, entrenador_equipo_historial, partido, mapa, estadistica_jugador, clasificacion_anual, auditoria_lec, usuarios_admin
+- **45 stored procedures** — all business logic encapsulated in stored procedures, with no direct SQL in the PHP code
+- **7 functions** — reusable helper calculations
+- **12 triggers** — automatic auditing, validations and protection of historical data
+- **4 MySQL users** with different permissions (admin, backend, readonly, auditor)
+
+> Table names are kept in Spanish, exactly as they appear in the database.
+
+### Included data
+- Complete seasons 2024–2026 (Spring, Summer, LEC Versus)
+- 10 teams with the real Spring 2026 rosters
+- 83+ players and 10 coaches
+- Real matches and statistics obtained from gol.gg
+
+---
+
+## Installation
+
+### Requirements
 - XAMPP (PHP 8.x + MySQL/MariaDB)
-- Navegador web
+- Web browser
 
-### Pasos
+### Steps
 
-**1. Clonar el repositorio**
+**1. Clone the repository**
 ```bash
-git clone https://github.com/tu-usuario/lec-database.git
+git clone https://github.com/misteralva/lec-database.git
 cd lec-database
 ```
 
-**2. Copiar a XAMPP**
+**2. Copy it to XAMPP**
 ```
 C:\xampp\htdocs\proyecto\
 ```
 
-**3. Crear el archivo `.env`** en la raíz del proyecto
+**3. Create the `.env` file** in the project root
 ```env
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -96,40 +98,40 @@ ADMIN_USER=admin
 ADMIN_PASS=password
 ```
 
-**4. Importar la base de datos**
+**4. Import the database**
 
-Abrir phpMyAdmin e importar `lec_script.sql`. El script crea la base de datos, todas las tablas, procedimientos, triggers, datos reales y usuarios del panel automáticamente.
+Open phpMyAdmin and import `lec_script.sql`. The script automatically creates the database, all the tables, procedures, triggers, real data and the panel users.
 
-**5. Abrir en el navegador**
+**5. Open it in the browser**
 ```
 http://localhost/proyecto/
 ```
 
 ---
 
-## Acceso al panel de administración
+## Accessing the admin panel
 
 ```
 http://localhost/proyecto/admin/login.php
 ```
 
-| Email | Contraseña | Rol |
-|-------|-----------|-----|
+| Email | Password | Role |
+|-------|----------|------|
 | admin@lec.es | password | Superadmin |
 | editor@lec.es | password | Editor |
 | auditor@lec.es | password | Auditor |
 
-> Cambiar las contraseñas tras el primer acceso desde **Gestionar usuarios**.
+> Change the passwords after the first login from **Manage users**. These are demo credentials for local use only.
 
 ---
 
-## Estructura del proyecto
+## Project structure
 
 ```
 proyecto/
-├── .env                          ← configuración (no incluido en git)
+├── .env                          ← configuration (not included in git)
 ├── .gitignore
-├── index.php                     ← página de inicio
+├── index.php                     ← home page
 ├── clasificacion.php
 ├── equipos.php
 ├── jugadores.php
@@ -137,15 +139,15 @@ proyecto/
 ├── estadisticas.php
 ├── playoffs.php
 ├── resultados.php
-├── ImagenHelper.php              ← gestión de rutas de imágenes
+├── ImagenHelper.php              ← image path handling
 ├── clases/
-│   ├── Config.php                ← lectura del .env
-│   ├── ConexionDB.php            ← conexión PDO (patrón Singleton)
-│   └── LecDB.php                 ← capa de acceso a datos
+│   ├── Config.php                ← reads the .env
+│   ├── ConexionDB.php            ← PDO connection (Singleton pattern)
+│   └── LecDB.php                 ← data access layer
 ├── admin/
 │   ├── login.php / logout.php
-│   ├── auth.php                  ← sistema de roles
-│   ├── helpers.php               ← callSP() y execSP()
+│   ├── auth.php                  ← role system
+│   ├── helpers.php               ← callSP() and execSP()
 │   ├── panel.php
 │   ├── nuevo_partido.php
 │   ├── editar_resultado.php
@@ -159,56 +161,56 @@ proyecto/
 │   ├── js/estadisticas.js
 │   ├── api/jugador_stats.php
 │   ├── img/
-│   │   ├── equipos/              ← logos y fondos por equipo
-│   │   ├── jugadores/            ← fotos por equipo/jugador
-│   │   ├── entrenadores/         ← fotos de entrenadores
-│   │   └── roles/                ← iconos SVG de roles
+│   │   ├── equipos/              ← logos and backgrounds per team
+│   │   ├── jugadores/            ← photos per team/player
+│   │   ├── entrenadores/         ← coach photos
+│   │   └── roles/                ← SVG role icons
 │   └── video/lec.mp4
 ├── includes/
 │   ├── header.php
 │   ├── footer.php
 │   └── csrf.php
-└── lec_script.sql                ← script completo de la BD
+└── lec_script.sql                ← full database script
 ```
 
 ---
 
-##  Seguridad implementada
+## Implemented security
 
-- **`.env`** — credenciales de base de datos fuera del código fuente
-- **Usuarios MySQL por rol** — lec_readonly solo puede hacer SELECT + EXECUTE; lec_backend tiene DML; lec_auditor solo accede a la tabla de auditoría
-- **Prepared statements** — toda consulta usa parámetros `?`, imposible inyección SQL
-- **BCrypt** — contraseñas hasheadas con cost=12, nunca en texto plano
-- **CSRF tokens** — todos los formularios de escritura están protegidos
-- **htmlspecialchars** — todos los outputs escapados para prevenir XSS
-- **Sistema de roles** — auth() valida permisos en cada página del admin
-- **Triggers de protección** — los datos de temporadas pasadas no pueden modificarse (salvo superadmin con bypass)
-- **Auditoría automática** — cada INSERT/UPDATE/DELETE queda registrado en auditoria_lec
+- **`.env`** — database credentials kept out of the source code
+- **MySQL users per role** — lec_readonly can only SELECT + EXECUTE; lec_backend has DML; lec_auditor only accesses the audit table
+- **Prepared statements** — every query uses `?` parameters, preventing SQL injection
+- **BCrypt** — passwords hashed with cost=12, never stored in plain text
+- **CSRF tokens** — all write forms are protected
+- **htmlspecialchars** — all output is escaped to prevent XSS
+- **Role system** — auth() validates permissions on every admin page
+- **Protection triggers** — data from past seasons cannot be modified (except by the superadmin with bypass)
+- **Automatic auditing** — every INSERT/UPDATE/DELETE is logged in auditoria_lec
 
 ---
 
-## Arquitectura
+## Architecture
 
 ```
-Navegador
+Browser
     │
     ▼
 PHP (index.php, equipos.php...)
-    │  usa
+    │  uses
     ▼
 LecDB.php  ────────────────────── ConexionDB.php
-    │  llama a                           │ conecta usando
+    │  calls                             │ connects using
     ▼                                    ▼
 Stored Procedures (MySQL)           Config.php → .env
     │
     ▼
-Tablas de datos
+Data tables
 ```
 
-Ninguna página PHP contiene SQL directo. Toda operación con la base de datos pasa por un procedimiento almacenado llamado desde `LecDB.php`.
+No PHP page contains direct SQL. Every database operation goes through a stored procedure called from `LecDB.php`.
 
 ---
 
-## Licencia
+## License
 
-Proyecto académico — League of Legends y LEC son marcas registradas de Riot Games.
+Academic project — League of Legends and LEC are registered trademarks of Riot Games.
